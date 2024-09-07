@@ -17,4 +17,9 @@ class Customer extends Model
 	{
 		return $this->belongsTo(File::class);
 	}
+
+	public function scopeSent($query)
+	{
+		return $query->where('is_send', 1);
+	}
 }

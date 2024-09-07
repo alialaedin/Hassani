@@ -11,13 +11,7 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class SaveFileAndData
 {
-	private String $extension;
 	private array $attributes;
-
-	public function __construct()
-	{
-		$this->extension = File::FILE_EXTENSION;
-	}
 
 	public function handle(UploadFile $event): void
 	{
@@ -29,8 +23,8 @@ class SaveFileAndData
 	private function updateAttributs($file): void
 	{
 		$this->attributes = [
-			'name' =>  Str::remove($this->extension, $file->getClientOriginalName()),
-			'path' => Storage::disk('local')->put('files', $file),
+			'name' =>  Str::remove(File::FILE_EXTENSION, $file->getClientOriginalName()),
+			'path' => Storage::disk(File::FILE_DISK)->put(File::FILE_DIRECTORY, $file),
 			'is_send' => 0
 		];
 	}

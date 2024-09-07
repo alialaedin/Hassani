@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('tracking_code');
             $table->string('mobile', 20);
+            $table->boolean('is_send')->default(0);
             $table->foreignIdFor(File::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

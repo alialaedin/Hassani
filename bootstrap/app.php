@@ -13,6 +13,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+            'Kavenegar' => Kavenegar\Laravel\Facade::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

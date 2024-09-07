@@ -9,7 +9,11 @@ class DashboardController extends Controller
 {
 	public function index()
 	{
-		$files = File::query()->latest('id')->paginate();
+		$files = File::query()
+		->with('customers')
+		->filters()
+		->latest('id')
+		->paginate();
 
 		return view('admin.index', compact('files'));
 	}
