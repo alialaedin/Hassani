@@ -9,71 +9,71 @@ use Kavenegar\KavenegarApi;
 
 class Sms
 {
-	protected KavenegarApi $api;
+	// protected KavenegarApi $api;
 
-	public function __construct(KavenegarApi $api)
-	{
-		$this->api = $api;
-	}
+	// public function __construct(KavenegarApi $api)
+	// {
+	// 	$this->api = $api;
+	// }
 
-	public function send(string $mobile, string $message): array
-	{
-		try {
-			$sender = config('kavenegar.sender');
-			$this->api->send($sender, $mobile, $message);
+	// public function send(string $mobile, string $message): array
+	// {
+	// 	try {
+	// 		$sender = config('kavenegar.sender');
+	// 		$this->api->send($sender, $mobile, $message);
 
-			$result = [
-				'success' => true,
-				'message' => 'Successfully'
-			];
-		} catch (ApiException $e) {
-			$result = [
-				'success' => false,
-				'message' => 'Api Error:' . $e->errorMessage()
-			];
-			//If webservice output not 200.
-			Log::error('Send SMS Api Error: ' . $e->errorMessage());
-		} catch (HttpException $e) {
+	// 		$result = [
+	// 			'success' => true,
+	// 			'message' => 'Successfully'
+	// 		];
+	// 	} catch (ApiException $e) {
+	// 		$result = [
+	// 			'success' => false,
+	// 			'message' => 'Api Error:' . $e->errorMessage()
+	// 		];
+	// 		//If webservice output not 200.
+	// 		Log::error('Send SMS Api Error: ' . $e->errorMessage());
+	// 	} catch (HttpException $e) {
 
-			$result = [
-				'success' => false,
-				'message' => 'Connection Error: ' . $e->errorMessage()
-			];
-			//Problem with connection to webservice
-			Log::error('Send SMS Connection Error: ' . $e->errorMessage());
-		}
+	// 		$result = [
+	// 			'success' => false,
+	// 			'message' => 'Connection Error: ' . $e->errorMessage()
+	// 		];
+	// 		//Problem with connection to webservice
+	// 		Log::error('Send SMS Connection Error: ' . $e->errorMessage());
+	// 	}
 
-		return $result;
-	}
+	// 	return $result;
+	// }
 
-	public function lookup(string $mobile, string $token1, $token2 = '', $token3 = '', $template = 'verify'): array
-	{
-		try {
-			$this->api->VerifyLookup($mobile, $token1, $token2, $token3, $template);
+	// public function lookup(string $mobile, string $token1, $token2 = '', $token3 = '', $template = 'verify'): array
+	// {
+	// 	try {
+	// 		$this->api->VerifyLookup($mobile, $token1, $token2, $token3, $template);
 
-			$result = [
-				'success' => true,
-				'message' => 'Successfully'
-			];
-		} catch (ApiException $e) {
-			$result = [
-				'success' => false,
-				'message' => 'Api Error:' . $e->errorMessage()
-			];
-			//If webservice output not 200.	
-			Log::error('Send SMS Api Error: ' . $e->errorMessage());
-		} catch (HttpException $e) {
+	// 		$result = [
+	// 			'success' => true,
+	// 			'message' => 'Successfully'
+	// 		];
+	// 	} catch (ApiException $e) {
+	// 		$result = [
+	// 			'success' => false,
+	// 			'message' => 'Api Error:' . $e->errorMessage()
+	// 		];
+	// 		//If webservice output not 200.	
+	// 		Log::error('Send SMS Api Error: ' . $e->errorMessage());
+	// 	} catch (HttpException $e) {
 
-			$result = [
-				'success' => false,
-				'message' => 'Connection Error: ' . $e->errorMessage()
-			];
-			//Problem with connection to webservice
-			Log::error('Send SMS Connection Error: ' . $e->errorMessage());
-		}
+	// 		$result = [
+	// 			'success' => false,
+	// 			'message' => 'Connection Error: ' . $e->errorMessage()
+	// 		];
+	// 		//Problem with connection to webservice
+	// 		Log::error('Send SMS Connection Error: ' . $e->errorMessage());
+	// 	}
 
-		return $result;
-	}
+	// 	return $result;
+	// }
 
 	public static function execute_manually_to_kavenegar($data = null)
 	{

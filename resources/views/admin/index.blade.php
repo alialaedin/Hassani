@@ -54,19 +54,19 @@
             <div class="row">
               <div class="col-12 col-lg-4">
                 <div class="form-group">
-                  <input type="text" name="name" class="form-control" placeholder="بخشی از نام فایل را وارد کنید">
+                  <input type="text" name="name" value="{{ request('name') }}" class="form-control" placeholder="بخشی از نام فایل را وارد کنید">
                 </div>
               </div>
               <div class="col-12 col-lg-4">
                 <div class="form-group">
                   <input class="form-control fc-datepicker" id="start_date_show" type="text" autocomplete="off" placeholder="تاریخ آپلود از"/>
-                  <input name="start_date" id="start_date_hide" type="hidden" value="{{	old('start_date') }}"/>
+                  <input name="start_date" id="start_date_hide" type="hidden" value="{{	request('start_date') }}"/>
                 </div>
               </div>
               <div class="col-12 col-lg-4">
                 <div class="form-group">
                   <input class="form-control fc-datepicker" id="end_date_show" type="text" autocomplete="off" placeholder="تاریخ آپلود تا"/>
-                  <input name="end_date" id="end_date_hide" type="hidden" value="{{	old('end_date') }}"/>
+                  <input name="end_date" id="end_date_hide" type="hidden" value="{{	request('end_date') }}"/>
                 </div>
               </div>
               <div class="col-12 col-lg-8">
@@ -123,6 +123,7 @@
                       </td>
                       <td>
                         <button 
+                          @class(['btn', 'btn-sm', 'btn-icon', 'btn-success' => !$file->is_send, 'btn-dark' => $file->is_send])
                           class="btn btn-sm btn-icon btn-success" 
                           data-toggle="tooltip"
                           data-original-title="ارسال پیامک"
@@ -145,10 +146,8 @@
                     </tr>
                   @empty
                   <tr>
-                    <td colspan="6">
-                      <div class="text-center">
-                        <span class="text-danger">هیچ داده ای یافت نشد !</span>
-                      </div>
+                    <td colspan="8">
+                      <span class="text-danger font-weight-bold fs-16">هیچ داده ای یافت نشد !</span>
                     </td>
                   </tr>
                   @endforelse
